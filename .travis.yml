@@ -3,19 +3,19 @@ services:
   - docker
 
 before_install:
-  - docker build -t bpokhrel/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t biplabsamu/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run bpokhrel/react-test npm run test -- --coverage
+  - docker run biplabsamu/react-test npm run test -- --coverage
 
 after_success:
-  - docker build -t bpokhrel/multi-client ./client
-  - docker build -t bpokhrel/multi-nginx ./nginx
-  - docker build -t bpokhrel/multi-server ./server
-  - docker build -t bpokhrel/multi-worker ./work
+  - docker build -t biplabsamu/multi-client ./client
+  - docker build -t biplabsamu/multi-nginx ./nginx
+  - docker build -t biplabsamu/multi-server ./server
+  - docker build -t biplabsamu/multi-worker ./work
 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push bpokhrel/multi-client
-  - docker push bpokhrel/multi-nginx
-  - docker push bpokhrel/multi-server
-  - docker push bpokhrel/multi-worker
+  - docker push biplabsamu/multi-client
+  - docker push biplabsamu/multi-nginx
+  - docker push biplabsamu/multi-server
+  - docker push biplabsamu/multi-worker
