@@ -3,16 +3,16 @@ services:
   - docker
 
 before_install:
-  - docker build -t bpokhrel/react-test -f Dockerfile.dev client
+  - docker build -t bpokhrel/react-test -f ./client/Dockerfile.dev ./client
 
 script:
   - docker run bpokhrel/react-test npm text -- --coverage
 
 after_success:
-  - docker build -t bpokhrel/multi-client client
-  - docker build -t bpokhrel/multi-nginx nginx
-  - docker build -t bpokhrel/multi-server server
-  - docker build -t bpokhrel/multi-worker work
+  - docker build -t bpokhrel/multi-client ./client
+  - docker build -t bpokhrel/multi-nginx ./nginx
+  - docker build -t bpokhrel/multi-server ./server
+  - docker build -t bpokhrel/multi-worker ./work
 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push bpokhrel/multi-client
