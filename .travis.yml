@@ -13,3 +13,9 @@ after_success:
   - docker build -t bpokhrel/multi-nginx ./nginx
   - docker build -t bpokhrel/multi-server ./server
   - docker build -t bpokhrel/multi-worker ./work
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push bpokhrel/multi-client
+  - docker push bpokhrel/multi-nginx
+  - docker push bpokhrel/multi-server
+  - docker push bpokhrel/multi-worker
