@@ -15,7 +15,22 @@ after_success:
   - docker build -t biplabsamu/multi-worker ./worker
 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin registry.example.com
   - docker push biplabsamu/multi-client
   - docker push biplabsamu/multi-nginx
   - docker push biplabsamu/multi-server
   - docker push biplabsamu/multi-worker
+
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-multi"
+  env: "DockerMulti-env"
+  bucket_name: "https://s3.console.aws.amazon.com/s3/#"
+  bucket_path: "docker-multi"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+   secure: "$AWS_SECRET_KEY"
