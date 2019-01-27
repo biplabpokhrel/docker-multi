@@ -27,7 +27,7 @@ deploy:
   region: "us-east-1"
   app: "docker-multi"
   env: "DockerMulti-env"
-  bucket_name: "https://s3.console.aws.amazon.com/s3/#"
+  bucket_name: "elasticbeanstalk-us-east-1-029555221686"
   bucket_path: "docker-multi"
   on:
     branch: master
