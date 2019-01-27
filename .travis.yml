@@ -15,7 +15,6 @@ after_success:
   - docker build -t biplabsamu/multi-worker ./worker
 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-    echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin registry.example.com
   - docker push biplabsamu/multi-client
   - docker push biplabsamu/multi-nginx
   - docker push biplabsamu/multi-server
