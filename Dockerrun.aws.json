@@ -3,7 +3,7 @@
     "containerDefinitions": [
         {
             "name": "client",
-            "images": "biplabsamu/multi-client",
+            "image": "biplabsamu/multi-worker",
             "hostname": "client",
             "essential": false,
             "memory": 128
